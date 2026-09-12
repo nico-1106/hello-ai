@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolás Saldarriaga | Desarrollador de Software</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #171717;
+            --border-color: #262626;
+            --text-primary: #ffffff;
+            --text-secondary: #a3a3a3;
+            --accent-white: #f5f5f5;
+            --hover-bg: #262626;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.8rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--accent-white);
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title::before {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--text-primary);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .about-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .interest-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .interest-card:hover {
+            border-color: #525252;
+            transform: translateY(-4px);
+        }
+
+        .interest-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .interest-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: var(--text-primary);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .interest-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .interest-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            padding: 4rem 0 2rem;
+            background-color: var(--bg-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            color: #525252;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+
+            .section {
+                padding: 3.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">NS.</a>
+            <ul class="nav-links">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#intereses">Intereses</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <span class="badge">Pereira, Risaralda • UTP</span>
+            <h1>Hola, soy Nicolás Saldarriaga</h1>
+            <p>Estudiante de Tecnología en Desarrollo de Software en la Universidad Tecnológica de Pereira</p>
+            <a href="#contacto" class="btn">Contáctame</a>
+        </section>
+
+        <section id="sobre-mi" class="section">
+            <h2 class="section-title">Sobre mí</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Formación Académica</h3>
+                    <p>Actualmente me encuentro cursando la carrera de <strong>Tecnología en Desarrollo de Software</strong> en la <strong>Universidad Tecnológica de Pereira (UTP)</strong>. </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="intereses" class="section">
+            <h2 class="section-title">Mis Intereses</h2>
+            <div class="interests-grid">
+                
+                <!-- Tarjeta 1: Fútbol -->
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <!-- Icono SVG de Fútbol -->
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6l3 2-1 3.5h-4L9 8z"></path>
+                            <path d="M12 6V2M15 8l4-1M14 11.5l3 3M10 11.5l-3 3M9 8L5 7"></path>
+                        </svg>
+                    </div>
+                    <h3>El Fútbol</h3>
+                    <p>El trabajo en equipo, la estrategia y la disciplina que transmite tanto dentro como fuera de la cancha es lo que me gusta de este deporte.</p>
+                </div>
+
+                <!-- Tarjeta 2: Música -->
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <!-- Icono SVG de Música -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18V5l12-2v13"></path>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <circle cx="18" cy="16" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3>La Música</h3>
+                    <p>Una manera de relajarme.</p>
+                </div>
+
+                <!-- Tarjeta 3: Videojuegos -->
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <!-- Icono SVG de Videojuegos -->
+                        <svg viewBox="0 0 24 24">
+                            <line x1="6" y1="12" x2="10" y2="12"></line>
+                            <line x1="8" y1="10" x2="8" y2="14"></line>
+                            <circle cx="15" cy="11" r="1"></circle>
+                            <circle cx="17" cy="13" r="1"></circle>
+                            <rect x="2" y="6" width="20" height="12" rx="4"></rect>
+                        </svg>
+                    </div>
+                    <h3>Los Videojuegos</h3>
+                    <p>Es una manera de distraerme un rato.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <h2>¿Hablamos?</h2>
+                <p style="color: var(--text-secondary); max-width: 450px;">
+                    Si quieres conectarte o saber más sobre mi, no dudes en escribirme.
+                </p>
+                <ul class="footer-links">
+                    <li><a href="mailto:nicolas@ejemplo.com">Correo</a></li>
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; Nicolás Saldarriaga — Pereira, Colombia</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
